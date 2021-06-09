@@ -1,12 +1,17 @@
 import mongoose from 'mongoose'; 
 
 const habitSchema = mongoose.Schema({
-    title: String,
+    title: String, 
     notes: String,
+    timer: String,
     downloadURL: {
         type: String, 
         required: 'URL can\'t be empty', 
         unique: true 
+    },
+    createdAt: {
+        type: Date, 
+        default: new Date(), 
     },
 }, {
     timestamps: true, 

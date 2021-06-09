@@ -5,6 +5,10 @@ const taskSchema = mongoose.Schema({
     checklist: String, 
     notes: String, 
     timer: String,
+    createdAt: {
+        type: Date, 
+        default: new Date(), 
+    },
 }, {
     timestamps: true, 
 });
