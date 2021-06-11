@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 
 import TaskSchema from '../models/task.model.js'; 
 
+const router = express.Router(); 
+
 export const getTasks = async (req, res) => {
     try {
         const getTasks = await TaskSchema.find(); 
