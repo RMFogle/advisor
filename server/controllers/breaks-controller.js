@@ -33,7 +33,7 @@ export const updateBreak = async (req, res) => {
     const { id } = req.params; 
     const { title, message, timer } = req.body; 
 
-    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`); 
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No Break with id: ${id}`); 
 
     const updatedBreak = { title, message, timer, _id: id }; 
 
@@ -49,7 +49,7 @@ export const deleteBreak = async (req, res) => {
     
     await BreakSchema.findByIdAndRemove(id); 
 
-    res.json({ message: "Post deleted successfully." }); 
+    res.json({ message: "Break deleted successfully." }); 
 }
 
 export default router; 
