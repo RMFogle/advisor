@@ -1,13 +1,9 @@
 import mongoose from 'mongoose'; 
 
 const breakSchema = mongoose.Schema({
-    title: String, 
-    message: String, 
-    timer: String, 
-    createdAt: {
-        type: Date, 
-        default: new Date(), 
-    },
+    title: { type: String }, 
+    message: { type: String }, 
+    timer: { type: String },
 }, {
     timestamps: true, 
 }); 
