@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+// test url connection for breaks
 const url = 'http://localhost:5000/breaks';
 
-export const fetchPosts = () => axios.get(url);
+export const fetchBreaks = () => axios.get(url);
+export const createBreak = (newBreak) => axios.post(url, newBreak);

@@ -13,14 +13,14 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 5000; 
 
+app.use(express.json({ limit: "30mb", extended: true })); 
+app.use(express.urlencoded({ limit: "30mb", extended: true }))
+app.use(cors()); 
+
 app.use('/routines', routineRoutes); 
 app.use('/breaks', breakRoutes); 
 app.use('/habits', habitRoutes); 
 app.use('/tasks', taskRoutes); 
-
-app.use(express.json({ limit: "30mb", extended: true })); 
-app.use(express.urlencoded({ limit: "30mb", extended: true }))
-app.use(cors()); 
 
 //Connect to mongodb cloud atlas 
 const uri = process.env.ATLAS_URI;

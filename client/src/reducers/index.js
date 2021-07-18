@@ -2,4 +2,4 @@ import { combineReducers } from "redux";
 
 import breaks from './breaks';
 
-export default combineReducers({ breaks });
+export const reducers = combineReducers({ breaks });
