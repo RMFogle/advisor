@@ -1,10 +1,11 @@
-const reducer = (breaks = [], action) => {
+/* eslint-disable import/no-anonymous-default-export */
+export default (breaks = [], action) => {
     switch (action.type) {
         case 'FETCH_ALL':
-            return breaks;
+            return action.payload;
         case 'CREATE':
-            return breaks;
+            return [ ...breaks, action.payload];
         default:
             return breaks;
     }
-}
+};

@@ -1,7 +1,9 @@
-import React from 'react';
-import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core'; 
+import React, { useEffect } from 'react';
+import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
 import './App.css';
 
+import { getBreaks } from './actions/breaks';
 // import Routines from './components/Routines/Routines'; 
 import Form from './components/Form/Form'; 
 import Breaks from './components/Breaks/Breaks';
@@ -10,6 +12,11 @@ import useStyles from './styles';
 
 const App = () => {
   const classes = useStyles(); 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getBreaks());
+  }, [dispatch]);
 
   return (
   <Container maxidth="lg">
