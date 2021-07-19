@@ -9,7 +9,7 @@ import useStyles from './styles';
 //...be posted to the routines page. i.e. post-->posts. break/habit/task-->routines.
 //..then user can move cards around as they see fit?
 
-const Breaks = () => {
+const Breaks = ({ setCurrentId }) => {
     const breaks = useSelector((state) => state.breaks)
     const classes = useStyles();
 
@@ -19,8 +19,8 @@ const Breaks = () => {
         !breaks.length ? <CircularProgress /> : (
             <Grid className={classes.container} container alignItems="stretch" spacing={3}>
                 {breaks?.map((post) => (
-                    <Grid key={post._id} item xs={12} sm={12} md={6} lg={3}>
-                        <Break post={post} />
+                    <Grid key={post._id} item xs={12} sm={12} md={6}>
+                        <Break post={post} setCurrentId={setCurrentId} />
                     </Grid>
                 ))}
             </Grid>
