@@ -1,10 +1,11 @@
+import { FETCH_ALL, CREATE, UPDATE, DELETE } from '../constants/actionTypes';
 import * as api from '../api';
     
     export const getBreaks = () => async (dispatch) => {
         try {
         const { data } = await api.fetchBreaks();
     
-        dispatch({ type: 'FETCH_ALL', payload: data });
+        dispatch({ type: FETCH_ALL, payload: data });
         } catch (error) {
         console.log(error.message);
         }
@@ -14,7 +15,7 @@ import * as api from '../api';
         try {
             const { data } = await api.createBreak(post);
 
-            dispatch({ type: 'CREATE', payload: data })
+            dispatch({ type: CREATE, payload: data })
         } catch (error) {
             console.log(error);
         }
@@ -24,7 +25,7 @@ import * as api from '../api';
         try {
             const { data } = await api.updateBreak(id, post);
 
-            dispatch({ type: 'UPDATE', payload: data})
+            dispatch({ type: UPDATE, payload: data})
         } catch (error) {
             console.log(error);
         }
@@ -34,7 +35,7 @@ import * as api from '../api';
         try {
             await api.deleteBreak(id);
 
-            dispatch({ type: 'DELETE', payload: id });
+            dispatch({ type: DELETE, payload: id });
         } catch (error) {
             console.log(error);
         }
