@@ -1,4 +1,4 @@
-import { NEW_TIMER, TOGGLE_TIMER } from '../actions';
+import { NEW_TIMER, TOGGLE_TIMER } from '../actions/timers';
 import Timer from '../Timer'; 
 
 const timersReducer = (state = [], action) => {

@@ -7,6 +7,8 @@ import { getBreaks } from './actions/breaks';
 // import Routines from './components/Routines/Routines'; 
 import Form from './components/Form/Form'; 
 import Breaks from './components/Breaks/Breaks';
+import NewTimer from './components/Timers/NewTimer';
+import ListTimers from './components/Timers/ListTimers';
 //import advisor appbar/navbar logo image.png. 
 import useStyles from './styles'; 
 
@@ -32,6 +34,8 @@ const App = () => {
                   <Form currentId={currentId} setCurrentId={setCurrentId} />
                 </Grid>
               <Grid item xs={12} sm={7}>
+                  <NewTimer />
+                  <ListTimers />
                   <Breaks setCurrentId={setCurrentId} />
               </Grid>
             </Grid>
