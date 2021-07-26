@@ -1,4 +1,4 @@
-import { SELECT_TIMER } from '../actions'; 
+import { SELECT_TIMER } from '../actions/timers'; 
 
 const selectedTimerReducer = (state = null, action) => {
     switch (action.type) {
