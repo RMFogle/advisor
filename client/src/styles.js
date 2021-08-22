@@ -19,4 +19,9 @@ export default makeStyles((theme) => ({
     },
     image: {
         marginLeft: '15px',
-    },})); 
+    },
+    root: {
+        flexGrow: 1,
+        backgroundColor: theme.palette.background.paper,
+    },
+})); 
