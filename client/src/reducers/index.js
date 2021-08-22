@@ -1,7 +1,6 @@
 import { combineReducers } from "redux";
 
 import breaks from './breaks';
-import timersReducer from "./timersReducer";
-import selectedTimerReducer from "./selectedTimeReducer";
+import timeLeft from "./timeLeft";
 
-export const reducers = combineReducers({ breaks, timers: timersReducer, selectedTimer: selectedTimerReducer });
+export const reducers = combineReducers({ breaks, timeLeft, });

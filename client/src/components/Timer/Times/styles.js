@@ -1,0 +1,61 @@
+import { makeStyles } from '@material-ui/core/styles';
+
+export default makeStyles({
+    times: {
+        width: '100%',
+        display: 'flex',
+        display: '-webkit-flex',
+        justifyContent: 'center',
+        },
+        timesContent: {
+            display: 'inline-block',
+            margin: '0 auto',
+            width: '180px',
+            height: '180px',
+            marginTop: '25px',
+            display: 'flex',
+            display: '-webkit-flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            border: '5px solid #4ebfc9',
+            borderRadius: '25%',
+        },
+        timerLabel: {
+            fontSize: '2rem',
+            fontWeight: '500',
+        },
+        timeLeft: {
+            fontSize: '2rem',
+            fontWeight: '500',
+        },
+        controls: {
+            display: 'flex',
+            display: '-webkit-flex',
+            justifyContent: 'center',
+            marginTop: '15px',
+        }, 
+        controlButton: {
+            fontSize: '1.1rem',
+            fontWeight: '700',
+            border: '1px solid #4ebfc9',
+            backgroundColor: 'transparent',
+            color: 'fff',
+            borderRadius: '6px',
+            outline: 'none',
+            width: '85px',
+            height: '35px',
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            webkitTransition: 'all 0.25s ease-out',
+            mozTransition: 'all 0.25s ease-out',
+            transition: 'all 0.25s ease-out',
+            margin: '15px',
+            textTransform: 'uppercase',
+        },
+        controlButton: {
+            cursor: 'pointer',
+            backgroundColor: '#4ebfc9',
+        },
+});

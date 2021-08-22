@@ -31,11 +31,11 @@ export const createBreak = async (req, res) => {
 
 export const updateBreak = async (req, res) => {
     const { id } = req.params; 
-    const { title, message, timer } = req.body; 
+    const { title, message, notes, checklist, downloadURL, timer } = req.body;  
 
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No Break with id: ${id}`); 
 
-    const updatedBreak = { title, message, timer, _id: id }; 
+    const updatedBreak = { title, message, notes, checklist, downloadURL, timer, _id: id }; 
 
     await BreakSchema.findByIdAndUpdate(id, updatedBreak, { new: true });
 
