@@ -7,6 +7,6 @@ const router = express.Router();
 router.get('/', getBreaks);
 router.post('/', createBreak); 
 router.patch('/:id', updateBreak); 
-router.delete('/:id', deleteBreak); 
+router.delete('/:id', deleteBreak);
 
 export default router; 

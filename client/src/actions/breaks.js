@@ -1,11 +1,11 @@
-import { FETCH_ALL, CREATE, UPDATE, DELETE } from '../constants/actionTypes';
-import * as api from '../api';
+import { FETCH_BREAK, CREATE_BREAK, UPDATE_BREAK, DELETE_BREAK } from '../constants/actionTypes';
+import * as api from '../api/index.js';
     
-    export const getBreaks = () => async (dispatch) => {
+    export const getBreaks = (id) => async (dispatch) => {
         try {
-        const { data } = await api.fetchBreaks();
+        const { data } = await api.fetchBreaks(id);
     
-        dispatch({ type: FETCH_ALL, payload: data });
+        dispatch({ type: FETCH_BREAK, payload: data });
         } catch (error) {
         console.log(error.message);
         }
@@ -15,7 +15,7 @@ import * as api from '../api';
         try {
             const { data } = await api.createBreak(post);
 
-            dispatch({ type: CREATE, payload: data })
+            dispatch({ type: CREATE_BREAK, payload: data })
         } catch (error) {
             console.log(error);
         }
@@ -25,7 +25,7 @@ import * as api from '../api';
         try {
             const { data } = await api.updateBreak(id, post);
 
-            dispatch({ type: UPDATE, payload: data})
+            dispatch({ type: UPDATE_BREAK, payload: data})
         } catch (error) {
             console.log(error);
         }
@@ -35,7 +35,7 @@ import * as api from '../api';
         try {
             await api.deleteBreak(id);
 
-            dispatch({ type: DELETE, payload: id });
+            dispatch({ type: DELETE_BREAK, payload: id });
         } catch (error) {
             console.log(error);
         }

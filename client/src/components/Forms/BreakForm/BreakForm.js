@@ -9,9 +9,9 @@ import { useSelector } from 'react-redux';
 import useStyles from './styles';
 import { createBreak, updateBreak } from '../../../actions/breaks';
 
-const BreakForm = ({ currentId, setCurrentId }) => {
-    const [postData, setPostData] = useState({ title: '', message: '', notes: '', checklist: '', downloadURL: '', timer: '' });
-    const post = useSelector((state) => currentId ? state.breaks.find((p) => p._id === currentId) : null); 
+const BreakForm = ({ breakId, setBreakId }) => {
+    const [postData, setPostData] = useState({ title: '', message: '', notes: '', downloadURL: '' });
+    const post = useSelector((state) => breakId ? state.breaks.find((p) => p._id === breakId) : null); 
     const classes = useStyles();
     const dispatch = useDispatch();
 
@@ -22,8 +22,8 @@ const BreakForm = ({ currentId, setCurrentId }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if(currentId) {
-            dispatch(updateBreak(currentId, postData));
+        if(breakId) {
+            dispatch(updateBreak(breakId, postData));
         } else {
             dispatch(createBreak(postData));
         }
@@ -31,14 +31,14 @@ const BreakForm = ({ currentId, setCurrentId }) => {
     }
 
     const clear = () => {
-        setCurrentId(null);
-        setPostData({ title: '', message: '', notes: '', checklist: '', downloadURL: '', timer: '' })
+        setBreakId(null);
+        setPostData({ title: '', message: '', notes: '', downloadURL: '' })
     }
 
     return (
         <Paper className={classes.paper}>
             <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
-            <Typography variant="h6">{ currentId ? 'Edit' : 'Create' } a Card</Typography>
+            <Typography variant="h6">{ breakId ? 'Edit' : 'Create' } a Card</Typography>
             <FormControl variant="outlined" className={classes.formControl}>
                     <InputLabel htmlFor="outlined-age-native-simple">Title</InputLabel>
                         <Select
@@ -80,9 +80,7 @@ const BreakForm = ({ currentId, setCurrentId }) => {
                         </Select>
                     </FormControl>
             <TextField name="notes" variant="outlined" label="Notes" fullWidth value={postData.notes} onChange={(e) => setPostData({ ...postData, notes: e.target.value })}/>
-            <TextField name="checklist" variant="outlined" label="Checklist" fullWidth value={postData.checklist} onChange={(e) => setPostData({ ...postData, checklist: e.target.value })}/>
             <TextField type="url" name="url" variant="outlined" label="uRL (optional)" fullWidth value={postData.downloadURL} onChange={(e) => setPostData({ ...postData, downloadURL: e.target.value })}/>
-            {/* Timer input/selector goes here or perhaps place above the form as an icon off to the right of the paper/card? */}
             <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
             <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
             </form>

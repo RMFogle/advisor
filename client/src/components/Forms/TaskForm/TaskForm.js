@@ -4,42 +4,39 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
 import useStyles from './styles';
-// import { createTask, updateTask } from '../../../actions/tasks';
+import { createTodo, updateTodo } from '../../../actions/todos';
 
-const TaskForm = ({ currentId, setCurrentId }) => {
-    const [postData, setPostData] = useState({ title: '', checklist: '', notes: '' });
-    const post = useSelector((state) => currentId ? state.habits.find((p) => p._id === currentId) : null); 
+const TaskForm = ({ taskId, setTaskId }) => {
+    const [checkData, setCheckData] = useState({ task: '', completed: '' });
+    const check = useSelector((state) => taskId ? state.todos.find((p) => p._id === taskId) : null); 
     const classes = useStyles();
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if(post) setPostData(post);
-    }, [post])
+        if(check) setCheckData(check);
+    }, [check])
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
-    //     if(currentId) {
-    //         dispatch(updateHabit(currentId, postData));
-    //     } else {
-    //         dispatch(createHabit(postData));
-    //     }
-    //     clear();
-    // }
+        if(taskId) {
+            dispatch(updateTodo(taskId, checkData));
+        } else {
+            dispatch(createTodo(checkData));
+        }
+        clear();
+    }
 
     const clear = () => {
-        setCurrentId(null);
-        setPostData({ title: '', checklist: '', notes: '' })
+        setTaskId(null);
+        setCheckData({ task: '', completed: '' })
     }
 
     return (
         <Paper className={classes.paper}>
-            <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={""}>
-            <Typography variant="h6">{ currentId ? 'Editing' : 'Creating' } a Task</Typography>
-            <TextField name="title" variant="outlined" label="Title" fullWidth value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value })}/>
-            <TextField name="checklist" variant="outlined" label="Checklist" fullWidth value={postData.checklist} onChange={(e) => setPostData({ ...postData, checklist: e.target.value })}/>
-            <TextField name="notes" variant="outlined" label="Notes" fullWidth value={postData.notes} onChange={(e) => setPostData({ ...postData, notes: e.target.value })}/>
-            {/* Timer input/selector goes here or perhaps place above the form as an icon off to the right of the paper/card? */}
+            <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
+            <Typography variant="h6">{ taskId ? 'Editing' : 'Creating' } a Task</Typography>
+            <TextField name="task" variant="outlined" label="Task" fullWidth value={checkData.task} onChange={(e) => setCheckData({ ...checkData, task: e.target.value })}/>
             <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
             <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
             </form>
