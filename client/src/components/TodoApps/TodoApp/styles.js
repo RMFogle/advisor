@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export default makeStyles((theme) => ({
+export default makeStyles({
     media: {
         height: 0,
         paddingTop: '56.25%',
@@ -53,4 +53,25 @@ export default makeStyles((theme) => ({
         display: 'block',
         textAlign: 'initial',
     },
-}));
+    li: {
+        paddingLeft: '0px',
+        textAlign: 'left',
+        fontSize: '15px',
+        fontWeight: '500',
+        minHeight: '40px',
+        display: 'flex',
+        alignItems: 'center',
+        color: '#8566aa',
+        textTransform: 'capitalize',
+        listStyle: 'none',
+    },
+    toDoStyle: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'left',
+        alignItems: 'center',
+    },
+    ol: {
+        marginTop: '30px',
+    },
+});

@@ -4,7 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 
 import breakRoutes from './routes/breaks.js'; 
-
+import todoRoutes from './routes/todos.js';
 
 dotenv.config(); 
 
@@ -16,6 +16,7 @@ app.use(express.urlencoded({ limit: "30mb", extended: true }))
 app.use(cors()); 
 
 app.use('/breaks', breakRoutes); 
+app.use('/todos', todoRoutes);
 
 //Connect to mongodb cloud atlas 
 const uri = process.env.ATLAS_URI;

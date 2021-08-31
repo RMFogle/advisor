@@ -1,21 +1,20 @@
 import React from 'react'; 
 import { Card, CardActions, CardContent, CardMedia, Button, Typography, Menu, MenuItem, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-import moment from 'moment';
 
 import useStyles from './styles';
 import { useDispatch } from 'react-redux';
 
+// import TaskForm from '../../Forms/TaskForm/TaskForm';
+import { deleteTodo } from '../../../actions/todos';
 
-import BreakForm from '../../Forms/BreakForm/BreakForm'
-import { deleteBreak } from '../../../actions/breaks';
-
-const Break = ({ post, breakId, setBreakId }) => {
+const TodoApp = ({ check, taskId, setTaskId }) => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [open, setOpen] = React.useState(false);
     const [ajar, setAjar] = React.useState(false);
+
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -32,7 +31,7 @@ const Break = ({ post, breakId, setBreakId }) => {
             const handleCloseAlert = () => {
                 setOpen(false);
             };
-        
+
             const handleClickOpenEdit = () => {
                 setAjar(true);
                 };
@@ -41,17 +40,16 @@ const Break = ({ post, breakId, setBreakId }) => {
                 setAjar(false);
                 };
 
-
-    
-    //Break Component
     return (
         <Card className={classes.card}>
-            <CardMedia className={classes.media} title={post.title} />
+            <CardMedia className={classes.media} />
             <div className={classes.overlay}>
-                <Typography variant="h6">{post.title}</Typography>
-                <Typography variant="body2">updated {moment(post.updatedAt).fromNow()}</Typography>
             </div>
+
             <div className={classes.overlay2} name="edit">
+                {/* <Button onClick={() => setCurrentId(post._id)} style={{ color: 'white' }} size="small">
+                    <MoreHorizIcon fontSize="medium" />
+                </Button> */}
                 <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} style={{ color: 'white' }} size="small">
                     <MoreHorizIcon fontSize="medium" />
                 </Button>
@@ -63,11 +61,11 @@ const Break = ({ post, breakId, setBreakId }) => {
                     onClose={handleClose}
                     onClick={handleClose}
                 >
-                    <MenuItem onClick={() => handleClickOpenEdit(setBreakId(post._id))}>Edit</MenuItem>
+                    <MenuItem onClick={() => handleClickOpenEdit(setTaskId(check._id))}>Edit</MenuItem>
                     <Dialog open={ajar} onClose={handleCloseEdit} aria-labelledby="form-dialog-title">
                     <DialogTitle id="form-dialog-title">Create A Break</DialogTitle>
                     <DialogContent>
-                        <BreakForm breakId={breakId} setBreakId={setBreakId}/>
+                        {/* <TaskForm taskId={taskId} setTaskId={setTaskId}/> */}
                     </DialogContent>
                     <DialogActions>
                     <Button onClick={handleCloseEdit} color="primary">
@@ -95,7 +93,7 @@ const Break = ({ post, breakId, setBreakId }) => {
                                 <Button onClick={handleCloseAlert} color="primary">
                                     Cancel
                                 </Button>
-                                <Button onClick={() => dispatch(deleteBreak(post._id))} color="primary" autoFocus>
+                                <Button onClick={() => dispatch(deleteTodo(check._id))} color="primary" autoFocus>
                                     Delete
                                 </Button>
                                 </DialogActions>
@@ -103,20 +101,15 @@ const Break = ({ post, breakId, setBreakId }) => {
                 </Menu>
             </div>
             <CardContent>
-
-                <Typography className={classes.title} variant="body2" color="textSecondary" component="p">{post.notes}</Typography>
-                <Typography className={classes.title} variant="body2" color="textSecondary" component="p">{post.message}</Typography>
-                <Button>
-                <a href={post.downloadURL} target="_blank" rel="noreferrer">
-                <Typography className={classes.title} variant="body2" color="textSecondary" component="p">{post.downloadURL}</Typography>
-                </a>
-                </Button>
-
+                <Typography className={classes.title} variant="body2" color="textSecondary" component="p">{check.task}</Typography>
             </CardContent>
             <CardActions className={classes.cardActions}>
+                {/* <Button size="small" color="primary" onClick={() => dispatch(deleteBreak(post._id))}>
+                    <DeleteIcon fontSize="small" /> Delete
+                </Button> */}
             </CardActions>
         </Card>
     ); 
 }
 
-export default Break; 
+export default TodoApp; 
