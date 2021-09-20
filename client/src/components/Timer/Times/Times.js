@@ -1,17 +1,37 @@
 import React, { useRef, useState, useEffect } from 'react'; 
 import { useSelector } from 'react-redux';
-import { Button } from '@material-ui/core';
+import { Button, Snackbar, IconButton, Paper, Divider } from '@material-ui/core';
+import AlarmIcon from '@mui/icons-material/Alarm';
+import Stack from '@mui/material/Stack';
+import CloseIcon from '@material-ui/icons/Close';
 import alarm1 from '../../../audio/alarm.mp3';
 import alarm2 from '../../../audio/alarm.ogg';
 import useStyles from './styles'; 
+import { styled } from '@mui/material/styles';
+
+
+const Item = styled(Paper)(({ theme }) => ({
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+}));
 
 
 const Times = () => {
     const classes = useStyles();
-    const timeLabel = useState('Session');
     const timeLeft = useSelector((state) => state.timeLeft);
     const [num, setNum] = useState(null);
     const [pause, setPause] = useState(false);
+    const [open, setOpen] = React.useState(false);
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+            }
+        
+            setOpen(false);
+        };
 
     let intervalRef = useRef();
 
@@ -23,6 +43,7 @@ const Times = () => {
             clearInterval(intervalRef.current)
             playAudio()
             alert("Times Up!")
+            setOpen(true)
             stopAudio()
             onReset()
             setPause((prev) => !prev)
@@ -74,21 +95,46 @@ const Times = () => {
 
     return (
         <div>
-            <div className={classes.times}>
+            <Stack
+            direction={{ xs: 'column', sm: 'row' }}
+            divider={<Divider orientation="vertical" flexItem />}
+            spacing={{ xs: 1, sm: 2, md: 4 }}
+            >
+                <Item className={classes.times}>
                     <div className={classes.timesContent}>
-                    <label className={classes.timerLabel}>{timeLabel}</label>
+                    <AlarmIcon fontSize="medium" />
                     <span className={classes.timeLeft}>{formatTime(timeLeft + num)}</span>
                     </div>
-            </div>
-            <div className={classes.controls}>
+                </Item>
+                <Item className={classes.controls}>
                     <Button className={classes.controlButton} onClick={handleClick}>{pause ? "Pause" : "Run"}</Button>
                     <Button className={classes.controlButton} onClick={onReset}>Reset</Button>
-            </div>
+                </Item>
+            </Stack>
             <audio className="audio-element">
                 <source src={alarm1} type="audio/mpeg"></source>
                 <source src={alarm2} type="audio/ogg"></source>
             </audio>
-        </div>
+            <div>
+                <Snackbar
+                    anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                    }}
+                    open={open}
+                    autoHideDuration={6000}
+                    onClose={handleClose}
+                    message="Times Up!"
+                    action={
+                    <React.Fragment>
+                        <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
+                        <CloseIcon fontSize="small" />
+                        </IconButton>
+                    </React.Fragment>
+                    }
+                />
+            </div>
+            </div>
         )
 }
 

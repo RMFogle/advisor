@@ -5,7 +5,6 @@ export default makeStyles((theme) => ({
         height: 0,
         paddingTop: '56.25%',
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
-        backgroundBlendMode: 'darken',
     },
     border: {
         border: 'solid',
@@ -17,9 +16,10 @@ export default makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
-        borderRadius: '15px',
+        borderRadius: '10px',
         height: '100%',
         position: 'relative',
+        backgroundColor: 'white',
     },
     overlay: {
         position: 'absolute',
@@ -41,8 +41,24 @@ export default makeStyles((theme) => ({
         justifyContent: 'space-between',
         margin: '20px',
     },
+    message: {
+        padding: '0 16px',
+        fontWeight: 'bold',
+        margin: '5px',
+    },
     title: {
         padding: '0 16px',
+        margin: '5px',
+    },
+    buttonLink: {
+        padding: '5px',
+        marginTop: '15px',
+        borderColor: 'blue',
+    },
+    link: {
+        border: '2px',
+        borderColor: 'grey',
+        marginLeft: '5px'
     },
     cardActions: {
         padding: '0 16px 8px 16px',

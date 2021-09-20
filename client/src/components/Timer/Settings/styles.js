@@ -1,18 +1,26 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles({
-
-    settings: {
+    container: {
+        // borderRadius: 15,
+        // margin: '30px 0',
         display: 'flex',
-        display: '-webkit-flex',
-        justifyContent: 'space-around',
-        marginTop: '25px',
+        flexDirection: 'row',
+        // justifyContent: 'space-between',
+        // alignItems: 'center',
+        // padding: '10px 50px',
+    },
+    settings: {
+        display: 'inline-flex',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        textAlign: 'center',
         },
         settingsSection: {
             textAlign: 'center',
         },
         settingsSectionLabel: {
-            fontWeight: '700',
+            fontWeight: '400',
         },
         settingsSectionButton: {
             fontSize: '1.1rem',

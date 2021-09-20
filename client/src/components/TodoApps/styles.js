@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { deepPurple } from '@material-ui/core/colors';
+// import { deepPurple } from '@material-ui/core/colors';
 
     export default makeStyles((theme) => ({
     mainContainer: {
@@ -11,12 +11,31 @@ import { deepPurple } from '@material-ui/core/colors';
         alignItems: 'center',
         padding: '10px 50px',
     },
-    heading: {
-        color: 'rgba(0,183,255, 1)',
-        textDecoration: 'none',
+    taskcard: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        borderRadius: '15px',
+        height: '100%',
+        padding: '5px',
     },
-    image: {
-        marginLeft: '15px',
+    h2: {
+        textAlign: 'center',
+    },
+    paper: {
+        boxShadow: 'none',
+    },
+    inputTask: {
+        display: 'flex',
+        justifyContent: 'center',
+        margin: '2px',
+        padding: '2px',
+    },
+    taskButtons: {
+        display: 'flex',
+        justifyContent: 'space-evenly',
+        margin: '5px',
+        padding: '5px',
     },
     toolbar: {
         display: 'flex',
@@ -39,10 +58,10 @@ import { deepPurple } from '@material-ui/core/colors';
     smMargin: {
         margin: theme.spacing(1),
     },
-    purple: {
-        color: theme.palette.getContrastText(deepPurple[500]),
-        backgroundColor: deepPurple[500],
-    },
+    // purple: {
+    //     color: theme.palette.getContrastText(deepPurple[500]),
+    //     backgroundColor: deepPurple[500],
+    // },
     [theme.breakpoints.down('sm')]: {
         appBar: {
         padding: '10px 20px',

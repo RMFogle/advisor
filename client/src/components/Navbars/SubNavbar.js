@@ -1,20 +1,27 @@
 import React, { useState, useEffect } from 'react'; 
-import { AppBar, Typography, Toolbar, Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, InputLabel, Select, Paper } from '@material-ui/core';
+import { AppBar, Typography, Toolbar, Button, TextField, Dialog, DialogActions, DialogContent, FormControl, InputLabel, Select, Paper, Divider } from '@material-ui/core';
+import Stack from '@mui/material/Stack';
+import FileBase from 'react-file-base64';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import useStyles from './styles';
+import { styled } from '@mui/material/styles';
 
 import { createBreak } from '../../actions/breaks';
-import { createTodo } from '../../actions/todos';
+import Timer from '../Timer/Timer';
 
+const Item = styled(Paper)(({ theme }) => ({
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+}));
 
-const Navbar = ({ breakId, setBreakId, taskId, setTaskId }) => {
+const SubNavbar = ({ breakId, setBreakId }) => {
     const dispatch = useDispatch();
     const classes = useStyles();
-    const [postData, setPostData] = useState({ title: '', message: '', notes: '', downloadURL: '' });
+    const [postData, setPostData] = useState({ title: '', message: '', notes: '', downloadURL: '', cardImage: '' });
     const post = useSelector((state) => breakId ? state.breaks.find((p) => p._id === breakId) : null); 
-    const [checkData, setCheckData] = useState({ task: '' });
-    const check = useSelector((state) => taskId ? state.todos.find((p) => p._id === taskId) : null); 
 
     useEffect(() => {
         if(post)
@@ -29,25 +36,10 @@ const Navbar = ({ breakId, setBreakId, taskId, setTaskId }) => {
     }
 
     const clear = () => {
-        setPostData({ title: '', message: '', notes: '', downloadURL: '' })
-    }
-
-    useEffect(() => {
-        if(check) setCheckData(check);
-    }, [check])
-
-    const handleSubmitTask = (e) => {
-        e.preventDefault();
-        dispatch(createTodo(checkData));
-        clearTask();
-    }
-
-    const clearTask = () => {
-        setCheckData({ task: '' })
+        setPostData({ title: '', message: '', notes: '', downloadURL: '', cardImage: '' })
     }
 
     const [open, setOpen] = React.useState(false);
-    const [ajar, setAjar] = React.useState(false);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -57,30 +49,21 @@ const Navbar = ({ breakId, setBreakId, taskId, setTaskId }) => {
         setOpen(false);
         };
 
-        const handleClickAjar = () => {
-            setAjar(true);
-            };
-        
-            const handleShut = () => {
-            setAjar(false);
-            };
-
-    
-
 
     return (
-        <AppBar className={classes.appBar} position="static" color="inherit">
-            <Typography className={classes.heading} variant="h4" align="center">advisor App</Typography>
-
-        {/* <Link to="/" className={classes.brandContainer}>
-            <img component={Link} to="/" src={""} alt="icon" height="45px" />
-            <img className={classes.image} src={""} alt="icon" height="40px" />
-        </Link> */}
-            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-                +Break
+        <AppBar className={classes.appSubBar} position="relative" color="inherit">
+            <Toolbar className={classes.toolbar}>
+            <Stack
+            direction={{ xs: 'column', sm: 'row' }}
+            spacing={{ xs: 1, sm: 2, md: 4 }}
+            >
+            <Item className={classes.cardButton}>
+            <Button variant="contained" color="primary" onClick={handleClickOpen}>
+                +Card
             </Button>
+            </Item>
+            <Divider orientation="vertical" flexItem />
                 <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                    <DialogTitle id="form-dialog-title">Create A Break</DialogTitle>
                     <DialogContent>
                     <Paper className={classes.paper}>
             <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
@@ -127,6 +110,7 @@ const Navbar = ({ breakId, setBreakId, taskId, setTaskId }) => {
                     </FormControl>
             <TextField name="notes" variant="outlined" label="Notes" fullWidth value={postData.notes} onChange={(e) => setPostData({ ...postData, notes: e.target.value })}/>
             <TextField type="url" name="url" variant="outlined" label="uRL (optional)" fullWidth value={postData.downloadURL} onChange={(e) => setPostData({ ...postData, downloadURL: e.target.value })}/>
+            <div className={classes.fileInput}><FileBase type="file" multiple={false} onDone={({ base64 }) => setPostData({ ...postData, cardImage: base64 })} /></div>
             <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" onClick={handleClose} fullWidth>Submit</Button>
             <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
             </form>
@@ -136,48 +120,13 @@ const Navbar = ({ breakId, setBreakId, taskId, setTaskId }) => {
                     <Button onClick={handleClose} color="primary">
                         Cancel
                     </Button>
-                    <Button onClick={handleClose} color="primary">
-                        Subscribe
-                    </Button>
                     </DialogActions>
                 </Dialog>
-            <Button variant="outlined" color="primary" onClick={handleClickAjar}>
-                +Task
-            </Button>
-                <Dialog open={ajar} onClose={handleShut} aria-labelledby="form-dialog-title">
-                    <DialogTitle id="form-dialog-title">Create A Task</DialogTitle>
-                    <DialogContent>
-                        <Paper className={classes.paper}>
-                            <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmitTask}>
-                            <Typography variant="h6">{ taskId ? 'Editing' : 'Creating' } a Task</Typography>
-                            <TextField name="task" variant="outlined" label="Task" fullWidth value={checkData.task} onChange={(e) => setCheckData({ ...checkData, task: e.target.value })}/>
-                            <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
-                            <Button variant="contained" color="secondary" size="small" onClick={clearTask} fullWidth>Clear</Button>
-                            </form>
-                        </Paper>
-                    </DialogContent>
-                    <DialogActions>
-                    <Button onClick={handleShut} color="primary">
-                        Cancel
-                    </Button>
-                    <Button onClick={handleShut} color="primary">
-                        Subscribe
-                    </Button>
-                    </DialogActions>
-                </Dialog>
-        <Toolbar className={classes.toolbar}>
-            {/* {user?.result ? (
-            <div className={classes.profile}>
-                {/* <Avatar className={classes.purple} alt={user?.result.name} src={user?.result.imageUrl}>{user?.result.name.charAt(0)}</Avatar> */}
-                {/* <Typography className={classes.userName} variant="h6">{user?.result.name}</Typography> */}
-                {/* <Button variant="contained" className={classes.logout} color="secondary" onClick={""}>Logout</Button>
-            </div>
-            ) : (
-            <Button component={Link} to="/auth" variant="contained" color="primary">Sign In</Button>
-            )} */}
+                    <Timer />
+                </Stack>
         </Toolbar>
         </AppBar>
     );
 };
 
-export default Navbar;
+export default SubNavbar;

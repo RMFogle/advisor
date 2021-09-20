@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { deepPurple } from '@material-ui/core/colors';
 
     export default makeStyles((theme) => ({
-    mainContainer: {
+    container: {
         borderRadius: 15,
         margin: '30px 0',
         display: 'flex',
@@ -62,7 +62,6 @@ import { deepPurple } from '@material-ui/core/colors';
         width: '160px',
         },
     },
-
     actionDiv: {
         textAlign: 'center',
     },

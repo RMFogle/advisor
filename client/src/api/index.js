@@ -16,3 +16,5 @@ export const createTodo = (newTodo) => axios.post(altURL, newTodo);
 export const updateTodo = (id, updatedTodo) => axios.patch(`${altURL}/${id}`, updatedTodo);
 export const deleteTodo = (id) => axios.delete(`${altURL}/${id}`);
 export const checkTask = (id) => axios.patch(`${altURL}/${id}/checkTask`);
+
+

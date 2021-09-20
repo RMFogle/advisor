@@ -1,14 +1,15 @@
 import React from 'react'; 
-import { Card, CardActions, CardContent, CardMedia, Button, Typography, Menu, MenuItem, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
+import { Card, CardActions, CardContent, CardMedia, Button, Typography, Menu, MenuItem, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Switch, FormGroup, FormControlLabel } from '@material-ui/core';
+import LinkIcon from '@mui/icons-material/Link';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from 'moment';
 
 import useStyles from './styles';
 import { useDispatch } from 'react-redux';
 
-
 import BreakForm from '../../Forms/BreakForm/BreakForm'
 import { deleteBreak } from '../../../actions/breaks';
+
 
 const Break = ({ post, breakId, setBreakId }) => {
     const classes = useStyles();
@@ -16,6 +17,11 @@ const Break = ({ post, breakId, setBreakId }) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [open, setOpen] = React.useState(false);
     const [ajar, setAjar] = React.useState(false);
+    const [checked, setChecked] = React.useState(false);
+
+    const toggleChecked = () => {
+        setChecked((prev) => !prev);
+    };
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -41,14 +47,14 @@ const Break = ({ post, breakId, setBreakId }) => {
                 setAjar(false);
                 };
 
-
+                console.log(checked)
     
     //Break Component
     return (
-        <Card className={classes.card}>
-            <CardMedia className={classes.media} title={post.title} />
+        <Card className={classes.card} style={{backgroundColor: checked ? "grey" : ""}}>
+            <CardMedia className={classes.media} image={post.cardImage} title={post.title} />
             <div className={classes.overlay}>
-                <Typography variant="h6">{post.title}</Typography>
+                <Typography variant="h5">{post.title}</Typography>
                 <Typography variant="body2">updated {moment(post.updatedAt).fromNow()}</Typography>
             </div>
             <div className={classes.overlay2} name="edit">
@@ -65,16 +71,13 @@ const Break = ({ post, breakId, setBreakId }) => {
                 >
                     <MenuItem onClick={() => handleClickOpenEdit(setBreakId(post._id))}>Edit</MenuItem>
                     <Dialog open={ajar} onClose={handleCloseEdit} aria-labelledby="form-dialog-title">
-                    <DialogTitle id="form-dialog-title">Create A Break</DialogTitle>
+                    <DialogTitle id="form-dialog-title"></DialogTitle>
                     <DialogContent>
-                        <BreakForm breakId={breakId} setBreakId={setBreakId}/>
+                        <BreakForm breakId={breakId} setBreakId={setBreakId} />
                     </DialogContent>
                     <DialogActions>
                     <Button onClick={handleCloseEdit} color="primary">
                         Cancel
-                    </Button>
-                    <Button onClick={handleCloseEdit} color="primary">
-                        Subscribe
                     </Button>
                     </DialogActions>
                 </Dialog>
@@ -103,17 +106,22 @@ const Break = ({ post, breakId, setBreakId }) => {
                 </Menu>
             </div>
             <CardContent>
-
+                <Typography className={classes.message} variant="body1" color="textSecondary" component="p">{post.message}</Typography>
                 <Typography className={classes.title} variant="body2" color="textSecondary" component="p">{post.notes}</Typography>
-                <Typography className={classes.title} variant="body2" color="textSecondary" component="p">{post.message}</Typography>
-                <Button>
+                <Button className={classes.buttonLink}>
+                    <LinkIcon color="primary"/>
                 <a href={post.downloadURL} target="_blank" rel="noreferrer">
-                <Typography className={classes.title} variant="body2" color="textSecondary" component="p">{post.downloadURL}</Typography>
+                <Typography className={classes.link} variant="body2" color="textSecondary" component="p">{post.downloadURL}</Typography>
                 </a>
                 </Button>
-
             </CardContent>
             <CardActions className={classes.cardActions}>
+                <FormGroup>
+                    <FormControlLabel
+                        control={<Switch checked={checked} onChange={toggleChecked} />}
+                        label={ checked ? 'Complete' : 'Incomplete'}
+                    />
+                </FormGroup>
             </CardActions>
         </Card>
     ); 

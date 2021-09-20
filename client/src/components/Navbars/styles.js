@@ -1,14 +1,23 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { deepPurple } from '@material-ui/core/colors';
 
 export default makeStyles((theme) => ({
-    appBar: {
-        borderRadius: 15,
-        margin: '30px 0',
+    appMainBar: {
+        borderRadius: 10,
+        margin: '10px 0',
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    appSubBar: {
+        borderRadius: 10,
+        margin: '10px 0',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        background: 'transparent',
+        boxShadow: 'none',
     },
     heading: {
         color: 'rgba(0,183,255, 1)',
@@ -22,38 +31,15 @@ export default makeStyles((theme) => ({
     },
     toolbar: {
         display: 'flex',
-        justifyContent: 'flex-end',
-        width: '400px',
-        [theme.breakpoints.down('sm')]: {
-        width: 'auto',
-        },
-    },
-    profile: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        width: '400px',
-        alignItems: 'center',
-        [theme.breakpoints.down('sm')]: {
-        width: 'auto',
-        marginTop: 20,
         justifyContent: 'center',
+        width: '400px',
+        [theme.breakpoints.down('sm')]: {
+        width: 'auto',
         },
     },
-    logout: {
-        marginLeft: '20px',
-    },
-    userName: {
+    cardButton: {
         display: 'flex',
-        alignItems: 'center',
-        textAlign: 'center',
-    },
-    brandContainer: {
-        display: 'flex',
-        alignItems: 'center',
-    },
-    purple: {
-        color: theme.palette.getContrastText(deepPurple[500]),
-        backgroundColor: deepPurple[500],
+        justifyContent: 'center',
     },
     root: {
         '& .MuiTextField-root': {

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'; 
-import Checkbox from '@material-ui/core/Checkbox';
+import { Checkbox, List } from '@material-ui/core';
+import IconButton from '@mui/material/IconButton';
+import Stack from '@mui/material/Stack';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch } from 'react-redux';
-
 import useStyles from './styles';
-
 import { checkTask, deleteTodo } from '../../../actions/todos';
 
-const List = ({ check }) => {
+const ListItemCustom = ({ check }) => {
     const [checkData, setCheckData] = useState({ completed: '' });
     const classes = useStyles();
     const dispatch = useDispatch();
@@ -16,6 +17,12 @@ const List = ({ check }) => {
     }, [check])
 
     return (
+        <Stack 
+        direction="row"
+        alignItems="center"
+        justifyContent="space-between"
+        spacing={2}
+        >
         <div className={classes.toDoStyle}>
             <span onClick={() => dispatch(checkTask(check._id))}>
                 <Checkbox
@@ -24,12 +31,17 @@ const List = ({ check }) => {
                     inputProps={{ 'aria-label': 'primary checkbox' }}
                 />
             </span>
-            <li className={classes.li}>
+            <List className={classes.li}>
                 {checkData.task}
-            </li>
-            <button onClick={() => dispatch(deleteTodo(check._id))}>x</button>
-        </div>
+            </List>
+            </div>
+            <div className={classes.delButton}>
+            <IconButton aria-label="delete" onClick={() => dispatch(deleteTodo(check._id))}>
+                <DeleteIcon />
+            </IconButton>
+            </div>
+        </Stack>
     )
 };
 
-export default List;
+export default ListItemCustom;
