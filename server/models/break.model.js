@@ -5,6 +5,7 @@ const breakSchema = mongoose.Schema({
     message: String ,
     notes: String, 
     downloadURL: String,
+    cardImage: String,
 }, {
     timestamps: true, 
 }); 

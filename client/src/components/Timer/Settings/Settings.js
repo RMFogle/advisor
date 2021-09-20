@@ -1,8 +1,11 @@
 import React from 'react'; 
 import { useDispatch } from 'react-redux'
-import { Button } from '@material-ui/core';
+import { IconButton } from '@material-ui/core';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 import useStyles from './styles';
 import timerActions from '../../../actions/timerActions';
+
 
 const Settings = ({ isStart }) => {
     const classes = useStyles();
@@ -13,22 +16,24 @@ const Settings = ({ isStart }) => {
 
     return (
         <div className={classes.settings}>
-            <div className={classes.settingsSection}>
-            <label id="session-label">Session Length</label>
-            <div>
-                <Button className={btnClassName} id="session-decrement" 
+            <div className={classes.settings}>
+                <IconButton className={btnClassName} id="session-decrement" 
                 onClick={() => 
                     dispatch(
                         timerActions.minusTime()
-                        )}>-</Button>
-                <span id="session-length">{}</span>
-                <Button className={btnClassName} id="session-increment" 
+                        )}>
+                            <RemoveIcon fontSize="small" />
+                        </IconButton>
+                        </div>
+            <div className={classes.settings}>
+                <IconButton className={btnClassName} id="session-increment" 
                 onClick={() => 
                     dispatch(
                         timerActions.addTime()
-                        )}>+</Button>
-            </div>
-            </div>
+                        )}>
+                            <AddIcon fontSize="small"/>
+                        </IconButton>
+                        </div>
         </div>
     );
 }

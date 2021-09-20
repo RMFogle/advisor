@@ -29,7 +29,7 @@ export const updateTodo = (id, check) => async (dispatch) => {
     } catch (error) {
         console.log(error);
     }
-}
+};
 
 export const deleteTodo = (id) => async (dispatch) => {
     try {
@@ -39,7 +39,7 @@ export const deleteTodo = (id) => async (dispatch) => {
     } catch (error) {
         console.log(error);
     }
-}
+};
 
 export const checkTask = (id) => async (dispatch) => {
     try {
@@ -49,4 +49,4 @@ export const checkTask = (id) => async (dispatch) => {
     } catch (error) {
         console.log(error);
     }
-}
+};

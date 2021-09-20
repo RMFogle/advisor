@@ -3,6 +3,7 @@ import { TextField, Button, Typography, Paper } from '@material-ui/core';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import FileBase from 'react-file-base64';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
@@ -10,7 +11,7 @@ import useStyles from './styles';
 import { createBreak, updateBreak } from '../../../actions/breaks';
 
 const BreakForm = ({ breakId, setBreakId }) => {
-    const [postData, setPostData] = useState({ title: '', message: '', notes: '', downloadURL: '' });
+    const [postData, setPostData] = useState({ title: '', message: '', notes: '', downloadURL: '', cardImage: '' });
     const post = useSelector((state) => breakId ? state.breaks.find((p) => p._id === breakId) : null); 
     const classes = useStyles();
     const dispatch = useDispatch();
@@ -32,7 +33,7 @@ const BreakForm = ({ breakId, setBreakId }) => {
 
     const clear = () => {
         setBreakId(null);
-        setPostData({ title: '', message: '', notes: '', downloadURL: '' })
+        setPostData({ title: '', message: '', notes: '', downloadURL: '', cardImage: '' })
     }
 
     return (
@@ -81,6 +82,7 @@ const BreakForm = ({ breakId, setBreakId }) => {
                     </FormControl>
             <TextField name="notes" variant="outlined" label="Notes" fullWidth value={postData.notes} onChange={(e) => setPostData({ ...postData, notes: e.target.value })}/>
             <TextField type="url" name="url" variant="outlined" label="uRL (optional)" fullWidth value={postData.downloadURL} onChange={(e) => setPostData({ ...postData, downloadURL: e.target.value })}/>
+            <div className={classes.fileInput}><FileBase type="file" multiple={false} onDone={({ base64 }) => setPostData({ ...postData, cardImage: base64 })} /></div>
             <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
             <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
             </form>
