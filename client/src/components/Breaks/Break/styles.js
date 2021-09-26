@@ -24,12 +24,6 @@ export default makeStyles((theme) => ({
     overlay: {
         position: 'absolute',
         top: '20px',
-        left: '20px',
-        color: 'white',
-    },
-    overlay2: {
-        position: 'absolute',
-        top: '20px',
         right: '20px',
         color: 'white',
     },
@@ -49,6 +43,7 @@ export default makeStyles((theme) => ({
     title: {
         padding: '0 16px',
         margin: '5px',
+        fontWeightLight: 200,
     },
     buttonLink: {
         padding: '5px',
@@ -68,5 +63,32 @@ export default makeStyles((theme) => ({
     cardAction: {
         display: 'block',
         textAlign: 'initial',
+    },
+    root: {
+        '& .MuiTextField-root': {
+        margin: theme.spacing(1),
+        },
+    },
+    paper: {
+        padding: theme.spacing(2),
+    },
+    form: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+    },
+    fileInput: {
+        width: '97%',
+        margin: '10px 0',
+    },
+    buttonSubmit: {
+        marginBottom: 10,
+    },
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: '97%',
+    },
+    selectEmpty: {
+        marginTop: theme.spacing(2),
     },
 }));

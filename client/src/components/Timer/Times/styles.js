@@ -15,7 +15,7 @@ export default makeStyles((theme) => ({
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'center',
-            border: '2px solid #3f51b5',
+            border: '3px solid #e0e0e0',
             borderRadius: '5%',
         },
         timerLabel: {

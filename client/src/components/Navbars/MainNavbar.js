@@ -1,10 +1,12 @@
 import React from 'react'; 
-import { AppBar, Typography, Toolbar } from '@material-ui/core';
+import { AppBar, Toolbar } from '@material-ui/core';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Zoom from '@mui/material/Zoom';
+
+import advisorLogo from '../../img/Advisor-logoblue-25.png';
 import useStyles from './styles';
 
 
@@ -48,8 +50,8 @@ const MainNavbar = (props) => {
 
     return (
         <AppBar className={classes.appMainBar} position="static" color="inherit">
-            <Typography className={classes.heading} variant="h4" align="center">advisor App</Typography>
                 <Toolbar className={classes.toolbar} id="back-to-top-anchor">
+                <img src={advisorLogo} className={classes.logo} alt="advisorLogo" />
                 </Toolbar>
                 <ScrollTop {...props}>
                     <Fab color="primary" size="large" aria-label="scroll back to top">

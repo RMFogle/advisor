@@ -4,9 +4,10 @@ export default makeStyles((theme) => ({
     appMainBar: {
         borderRadius: 10,
         margin: '10px 0',
+        padding: '10px',
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
     },
     appSubBar: {
@@ -18,6 +19,9 @@ export default makeStyles((theme) => ({
         alignItems: 'center',
         background: 'transparent',
         boxShadow: 'none',
+    },
+    logo : {
+        display: 'flex',
     },
     heading: {
         color: 'rgba(0,183,255, 1)',

@@ -17,7 +17,11 @@ import { makeStyles } from '@material-ui/core/styles';
         justifyContent: 'space-between',
         borderRadius: '15px',
         height: '100%',
+        width: '100%',
         padding: '5px',
+    },
+    tasklist: {
+        display: 'flex',
     },
     h2: {
         textAlign: 'center',

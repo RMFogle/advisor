@@ -9,8 +9,7 @@ import { getBreaks } from './actions/breaks';
 import Breaks from './components/Breaks/Breaks';
 
 import { getTodos } from './actions/todos';
-import TodoApps from './components/TodoApps/TodoApps';
-
+import TodoAppCombo from './components/TodoApps/CombineTodoApp';
 
 const Home = () => {
     const [breakId, setBreakId] = useState(null);
@@ -33,7 +32,7 @@ const Home = () => {
             <Grid container justifyContent="space-between" alignItems="stretch" spacing={3}>
                 <Grid item xs={12} sm={3}>
                 <IconButton onClick={() => setVisible(!visible)}>{visible ? <VisibilityOffIcon fontSize="small"/> : <VisibilityIcon fontSize="small"/>}</IconButton>
-                {visible && <TodoApps taskId={taskId} setTaskId={setTaskId} />}
+                {visible && <TodoAppCombo taskId={taskId} setTaskId={setTaskId} />}
                 </Grid>
                 <Grid item xs={12} sm={9}>
                     <Breaks breakId={breakId} setBreakId={setBreakId} />        

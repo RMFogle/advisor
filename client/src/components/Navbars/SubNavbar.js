@@ -58,7 +58,7 @@ const SubNavbar = ({ breakId, setBreakId }) => {
             spacing={{ xs: 1, sm: 2, md: 4 }}
             >
             <Item className={classes.cardButton}>
-            <Button variant="contained" color="primary" onClick={handleClickOpen}>
+            <Button variant="contained" color="default" onClick={handleClickOpen}>
                 +Card
             </Button>
             </Item>
@@ -121,7 +121,7 @@ const SubNavbar = ({ breakId, setBreakId }) => {
                         Cancel
                     </Button>
                     </DialogActions>
-                </Dialog>
+                    </Dialog>
                     <Timer />
                 </Stack>
         </Toolbar>

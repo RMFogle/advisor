@@ -22,17 +22,11 @@ const BreakForm = ({ breakId, setBreakId }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        if(breakId) {
-            dispatch(updateBreak(breakId, postData));
-        } else {
-            dispatch(createBreak(postData));
-        }
+        dispatch(updateBreak(breakId, postData));
         clear();
     }
 
     const clear = () => {
-        setBreakId(null);
         setPostData({ title: '', message: '', notes: '', downloadURL: '', cardImage: '' })
     }
 

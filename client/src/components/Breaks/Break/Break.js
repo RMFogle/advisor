@@ -1,14 +1,16 @@
-import React from 'react'; 
-import { Card, CardActions, CardContent, CardMedia, Button, Typography, Menu, MenuItem, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Switch, FormGroup, FormControlLabel } from '@material-ui/core';
+import React, { useState, useEffect } from 'react'; 
+import { Card, CardActions, CardContent, CardMedia, Button, Typography, Menu, MenuItem, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Switch, FormGroup, FormControlLabel, FormControl, InputLabel, Select, Paper, TextField } from '@material-ui/core';
 import LinkIcon from '@mui/icons-material/Link';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from 'moment';
+import FileBase from 'react-file-base64';
 
 import useStyles from './styles';
 import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import BreakForm from '../../Forms/BreakForm/BreakForm'
 import { deleteBreak } from '../../../actions/breaks';
+import { updateBreak } from '../../../actions/breaks';
 
 
 const Break = ({ post, breakId, setBreakId }) => {
@@ -18,6 +20,24 @@ const Break = ({ post, breakId, setBreakId }) => {
     const [open, setOpen] = React.useState(false);
     const [ajar, setAjar] = React.useState(false);
     const [checked, setChecked] = React.useState(false);
+    const [postData, setPostData] = useState({ title: '', message: '', notes: '', downloadURL: '', cardImage: '' });
+    const posts = useSelector((state) => breakId ? state.breaks.find((p) => p._id === breakId) : null); 
+
+    useEffect(() => {
+        if(posts)
+        setPostData(posts);
+    }, [posts])
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(updateBreak(breakId, postData));
+        clear();
+    }
+
+    const clear = () => {
+        setPostData({ title: '', message: '', notes: '', downloadURL: '', cardImage: '' })
+    }
 
     const toggleChecked = () => {
         setChecked((prev) => !prev);
@@ -53,13 +73,9 @@ const Break = ({ post, breakId, setBreakId }) => {
     return (
         <Card className={classes.card} style={{backgroundColor: checked ? "grey" : ""}}>
             <CardMedia className={classes.media} image={post.cardImage} title={post.title} />
-            <div className={classes.overlay}>
-                <Typography variant="h5">{post.title}</Typography>
-                <Typography variant="body2">updated {moment(post.updatedAt).fromNow()}</Typography>
-            </div>
-            <div className={classes.overlay2} name="edit">
+            <div className={classes.overlay} name="edit">
                 <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} style={{ color: 'white' }} size="small">
-                    <MoreHorizIcon fontSize="medium" />
+                    <MoreHorizIcon fontSize="large" />
                 </Button>
                 <Menu
                     id="simple-menu"
@@ -72,15 +88,71 @@ const Break = ({ post, breakId, setBreakId }) => {
                     <MenuItem onClick={() => handleClickOpenEdit(setBreakId(post._id))}>Edit</MenuItem>
                     <Dialog open={ajar} onClose={handleCloseEdit} aria-labelledby="form-dialog-title">
                     <DialogTitle id="form-dialog-title"></DialogTitle>
+
                     <DialogContent>
-                        <BreakForm breakId={breakId} setBreakId={setBreakId} />
+                                                
+                        <Paper className={classes.paper}>
+            <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
+            <Typography variant="h6">{ breakId ? 'Edit' : 'Create' } a Card</Typography>
+            <FormControl variant="outlined" className={classes.formControl}>
+                    <InputLabel htmlFor="outlined-age-native-simple">Title</InputLabel>
+                        <Select
+                        native
+                        value={postData.title}
+                        onChange={(e) => setPostData({ ...postData, title: e.target.value })}
+                        label="Title"
+                        inputProps={{
+                            name: 'title',
+                            id: 'outlined-title-native-simple',
+                        }}
+                        >
+                        <option aria-label="None" value="" />
+                        <option value={"Routine"}>Routine</option>
+                        <option value={"Habit"}>Habit</option>
+                        <option value={"Tasks"}>Tasks</option>
+                        <option value={"Break"}>Break</option>
+                        </Select>
+                    </FormControl>
+                <FormControl variant="outlined" className={classes.formControl}>
+                    <InputLabel htmlFor="outlined-age-native-simple">Message</InputLabel>
+                        <Select
+                        native
+                        value={postData.message}
+                        onChange={(e) => setPostData({ ...postData, message: e.target.value })}
+                        label="Message"
+                        inputProps={{
+                            name: 'message',
+                            id: 'outlined-message-native-simple',
+                        }}
+                        >
+                        <option aria-label="None" value="" />
+                        <option value={"Keep Going!"}>Keep Going!</option>
+                        <option value={"You Got This!"}>You Got This!</option>
+                        <option value={"Stay Focused!"}>Stay Focused!</option>
+                        <option value={"Be Patient"}>Be Patient</option>
+                        <option value={"You Deserve To Relax"}>You Deserve To Relax</option>
+                        <option value={"Let Your Mind Wander"}>Let Your Mind Wander</option>
+                        </Select>
+                    </FormControl>
+            <TextField name="notes" variant="outlined" label="Notes" fullWidth value={postData.notes} onChange={(e) => setPostData({ ...postData, notes: e.target.value })}/>
+            <TextField type="url" name="url" variant="outlined" label="uRL (optional)" fullWidth value={postData.downloadURL} onChange={(e) => setPostData({ ...postData, downloadURL: e.target.value })}/>
+            <div className={classes.fileInput}><FileBase type="file" multiple={false} onDone={({ base64 }) => setPostData({ ...postData, cardImage: base64 })} /></div>
+            <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" onClick={handleCloseEdit} fullWidth>Submit</Button>
+            <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
+            </form>
+        </Paper>
+
+
+
                     </DialogContent>
+
                     <DialogActions>
                     <Button onClick={handleCloseEdit} color="primary">
                         Cancel
                     </Button>
                     </DialogActions>
                 </Dialog>
+
                     <MenuItem onClick={handleClickOpenAlert}>Delete</MenuItem>
                             <Dialog
                                 open={open}
@@ -106,6 +178,7 @@ const Break = ({ post, breakId, setBreakId }) => {
                 </Menu>
             </div>
             <CardContent>
+                <Typography className={classes.title} variant="h6">{post.title}</Typography>
                 <Typography className={classes.message} variant="body1" color="textSecondary" component="p">{post.message}</Typography>
                 <Typography className={classes.title} variant="body2" color="textSecondary" component="p">{post.notes}</Typography>
                 <Button className={classes.buttonLink}>
@@ -122,6 +195,7 @@ const Break = ({ post, breakId, setBreakId }) => {
                         label={ checked ? 'Complete' : 'Incomplete'}
                     />
                 </FormGroup>
+                <Typography variant="caption">updated {moment(post.updatedAt).fromNow()}</Typography>
             </CardActions>
         </Card>
     ); 
