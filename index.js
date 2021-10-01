@@ -2,15 +2,15 @@ import express from 'express';
 import mongoose from 'mongoose'; 
 import cors from 'cors';
 import dotenv from 'dotenv';
+import path from 'path';
 
-import agendaRoutes from './routes/agenda.js'; 
-import todoRoutes from './routes/todos.js';
+import agendaRoutes from './server/routes/agenda.js'; 
+import todoRoutes from './server/routes/todos.js';
 
 dotenv.config(); 
 
 const app = express();
 const port = process.env.PORT || 5000; 
-const path = require("path"); 
 
 app.use(express.json({ limit: "30mb", extended: true })); 
 app.use(express.urlencoded({ limit: "30mb", extended: true }))
