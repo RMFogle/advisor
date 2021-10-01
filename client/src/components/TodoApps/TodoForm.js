@@ -36,26 +36,26 @@ const TodoForm = ({ taskId, setTaskId }) => {
             <Grid className={classes.container} container alignItems="stretch" spacing={6}>
                 <Card className={classes.taskcard}>
                 <Grid item xs={12} sm={12} md={12}>
-                <div className="">
-                    <h2 className={classes.h2}>Task List</h2>
-                        <Paper className={classes.paper}>
-                            <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmitTask}>
-                            <TextField name="task" variant="outlined" label="item" className={classes.inputTask} value={checkData.task} onChange={(e) => setCheckData({ ...checkData, task: e.target.value })}/>
-                            <Stack spacing={2} direction="row" className={classes.taskButtons}>
-                            <IconButton variant="contained" size="medium" type="submit">
-                                <AddCircleOutlineIcon color="primary" fontSize="large" />
-                            </IconButton>
-                            <IconButton variant="contained" size="medium" onClick={clearTask}>
-                                <HighlightOffIcon color="action" fontSize="large" />
-                            </IconButton>
-                            </Stack>
-                            </form>
-                        </Paper>
-                </div>
-                    </Grid>
-                    </Card>
+                    <div className="">
+                        <h2 className={classes.h2}>Task List</h2>
+                            <Paper className={classes.paper}>
+                                <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmitTask}>
+                                <TextField name="task" variant="outlined" label="item" className={classes.inputTask} value={checkData.task} onChange={(e) => setCheckData({ ...checkData, task: e.target.value })}/>
+                                <Stack spacing={2} direction="row" className={classes.taskButtons}>
+                                <IconButton variant="contained" size="medium" type="submit">
+                                    <AddCircleOutlineIcon color="primary" fontSize="large" />
+                                </IconButton>
+                                <IconButton variant="contained" size="medium" onClick={clearTask}>
+                                    <HighlightOffIcon color="action" fontSize="large" />
+                                </IconButton>
+                                </Stack>
+                                </form>
+                            </Paper>
+                    </div>
+                </Grid>
+                </Card>
             </Grid>
-            )
+        )
     }
 
     export default TodoForm;

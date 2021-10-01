@@ -23,16 +23,6 @@ export default makeStyles((theme) => ({
     logo : {
         display: 'flex',
     },
-    heading: {
-        color: 'rgba(0,183,255, 1)',
-        textDecoration: 'none',
-        fontSize: '2em',
-        fontWeight: 300,
-    },
-    image: {
-        marginLeft: '10px',
-        marginTop: '5px',
-    },
     toolbar: {
         display: 'flex',
         justifyContent: 'center',
@@ -68,8 +58,5 @@ export default makeStyles((theme) => ({
     formControl: {
         margin: theme.spacing(1),
         minWidth: '97%',
-    },
-    selectEmpty: {
-        marginTop: theme.spacing(2),
     },
 }));

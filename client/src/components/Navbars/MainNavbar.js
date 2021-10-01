@@ -51,7 +51,7 @@ const MainNavbar = (props) => {
     return (
         <AppBar className={classes.appMainBar} position="static" color="inherit">
                 <Toolbar className={classes.toolbar} id="back-to-top-anchor">
-                <img src={advisorLogo} className={classes.logo} alt="advisorLogo" />
+                    <img src={advisorLogo} className={classes.logo} alt="advisorLogo" />
                 </Toolbar>
                 <ScrollTop {...props}>
                     <Fab color="primary" size="large" aria-label="scroll back to top">

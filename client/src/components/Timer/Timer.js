@@ -1,9 +1,8 @@
 import React from 'react';
-import { Grid, Paper, Divider } from '@material-ui/core';
+import { Paper, Divider } from '@material-ui/core';
 import Stack from '@mui/material/Stack';
 import Settings from './Settings/Settings';
 import Times from './Times/Times';
-import useStyles from './styles';
 import { styled } from '@mui/material/styles';
 
 
@@ -16,16 +15,8 @@ const Item = styled(Paper)(({ theme }) => ({
 
 
 const Timer =() => {
-    const classes = useStyles();
-
 
     return (
-        // <Grid className={classes.container} 
-        // container
-        // direction="row"
-        // justifyContent="center"
-        // alignItems="center"
-        // spacing={1}>
         <div>
             <Stack
             direction={{ xs: 'column', sm: 'row' }}
@@ -40,7 +31,6 @@ const Timer =() => {
                     />
             </Stack>
         </div>
-        // </Grid>
     );
 }
 

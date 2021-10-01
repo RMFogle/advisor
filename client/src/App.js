@@ -2,7 +2,7 @@ import React from 'react';
 import { Container } from '@material-ui/core';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
-import Home from './Home';
+import Home from './components/Home/Home';
 import MainNavbar from './components/Navbars/MainNavbar';
 import SubNavbar from './components/Navbars/SubNavbar';
 
@@ -24,4 +24,3 @@ const App = () => {
     };
 
 export default App;
-
