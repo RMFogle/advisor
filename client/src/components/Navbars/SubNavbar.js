@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import useStyles from './styles';
 import { styled } from '@mui/material/styles';
 
-import { createBreak } from '../../actions/breaks';
+import { createAgenda } from '../../actions/agendas';
 import Timer from '../Timer/Timer';
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -17,11 +17,11 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary,
 }));
 
-const SubNavbar = ({ breakId, setBreakId }) => {
+const SubNavbar = ({ agendaId, setAgendaId }) => {
     const dispatch = useDispatch();
     const classes = useStyles();
     const [postData, setPostData] = useState({ title: '', message: '', notes: '', downloadURL: '', cardImage: '' });
-    const post = useSelector((state) => breakId ? state.breaks.find((p) => p._id === breakId) : null); 
+    const post = useSelector((state) => agendaId ? state.breaks.find((p) => p._id === agendaId) : null); 
 
     useEffect(() => {
         if(post)
@@ -31,7 +31,7 @@ const SubNavbar = ({ breakId, setBreakId }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(createBreak(postData));
+        dispatch(createAgenda(postData));
         clear();
     }
 
@@ -58,16 +58,16 @@ const SubNavbar = ({ breakId, setBreakId }) => {
             spacing={{ xs: 1, sm: 2, md: 4 }}
             >
             <Item className={classes.cardButton}>
-            <Button variant="contained" color="default" onClick={handleClickOpen}>
-                +Card
-            </Button>
+                <Button variant="contained" color="default" onClick={handleClickOpen}>
+                    +Card
+                </Button>
             </Item>
             <Divider orientation="vertical" flexItem />
                 <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                     <DialogContent>
                     <Paper className={classes.paper}>
             <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
-            <Typography variant="h6">{ breakId ? 'Edit' : 'Create' } a Card</Typography>
+            <Typography variant="h6">{ agendaId ? 'Edit' : 'Create' } a Card</Typography>
             <FormControl variant="outlined" className={classes.formControl}>
                     <InputLabel htmlFor="outlined-age-native-simple">Title</InputLabel>
                         <Select
@@ -117,12 +117,12 @@ const SubNavbar = ({ breakId, setBreakId }) => {
         </Paper>
                     </DialogContent>
                     <DialogActions>
-                    <Button onClick={handleClose} color="primary">
-                        Cancel
-                    </Button>
+                        <Button onClick={handleClose} color="primary">
+                            Cancel
+                        </Button>
                     </DialogActions>
                     </Dialog>
-                    <Timer />
+                        <Timer />
                 </Stack>
         </Toolbar>
         </AppBar>

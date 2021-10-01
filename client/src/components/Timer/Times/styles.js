@@ -7,7 +7,6 @@ export default makeStyles((theme) => ({
         justifyContent: 'center',
         },
         timesContent: {
-            // display: 'inline-block',
             margin: '0 auto',
             width: '120px',
             height: '45px',
