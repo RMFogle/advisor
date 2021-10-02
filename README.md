@@ -1,6 +1,5 @@
 # ![](https://github.com/RMFogle/advisor/blob/main/client/src/img/Advisor-logoblue-25.png)
 
-# advisor app
 advisor app is a personal time management application.
 
 ## Demo: 
