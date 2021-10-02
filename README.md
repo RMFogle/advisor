@@ -8,9 +8,11 @@ Here is a working live demo: https://advisor-app.netlify.app/
 
 ## Desktop & Mobile: 
 
-### Screen Shot here
+### Home Page
+![]()
 
-### Screen Shot here
+### Edit a Card
+![]()
 
 ## Motivation: 
 I wanted to build a single page MERN fullstack app that would help me manage my daily work and personal routines. 
