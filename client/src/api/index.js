@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'http://localhost:5000/agendas';
+const url = 'https://still-bastion-09694.herokuapp.com/agendas';
 
 export const fetchAgendas = () => axios.get(url);
 export const createAgenda = (newAgenda) => axios.post(url, newAgenda);
@@ -8,7 +8,7 @@ export const updateAgenda = (id, updatedAgenda) => axios.patch(`${url}/${id}`, u
 export const deleteAgenda = (id) => axios.delete(`${url}/${id}`);
 
 
-const altURL = 'http://localhost:5000/todos';
+const altURL = 'https://still-bastion-09694.herokuapp.com/todos';
 
 export const fetchTodos = () => axios.get(altURL);
 export const createTodo = (newTodo) => axios.post(altURL, newTodo);
