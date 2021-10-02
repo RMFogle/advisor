@@ -38,7 +38,7 @@ I'm juggling a part time job and multiple freelance gigs while pursuing a career
 - Routine Cards 
 
 ## Bugs: 
-- Route for /home breaks on page refresh after deployed to Netlify. 
+- Route for '/home' breaks on page refresh after deployed to Netlify. 
 - Mobile Responsiveness of 'Cards' are too narrow. Width needs to be increased for better display. 
 - URL link in 'Cards' spills past edge of container on mobile views. Break points need to be added.
 
