@@ -1,6 +1,6 @@
 # ![](https://github.com/RMFogle/advisor/blob/main/client/src/img/Advisor-logoblue-25.png)
 
-advisor app is a personal time management application.
+Advisor app is a personal time management application.
 
 ## Demo: 
 Here is a working live demo: https://advisor-app.netlify.app/
@@ -38,10 +38,15 @@ I'm juggling a part time job and multiple freelance gigs while pursuing a career
 - Routine Cards 
 
 ## Bugs: 
-- 
+- Route for /home breaks on page refresh after deployed to Netlify. 
+- Mobile Responsiveness of 'Cards' are too narrow. Width needs to be increased for better display. 
+- URL link in 'Cards' spills past edge of container on mobile views. Break points need to be added.
 
 ## Roadmap: 
-- 
+- Add JWT auth and create register/sign in. 
+- Add Google Sign-In. 
+- Create custom photo gallery for users to select stock photos to add to 'Cards' and background. Or, integrate a 3rd party library API i.e. Unsplash or Shutterstock. 
+- Implement React Drag and Drop to 'Cards' so user has ability to rearrange schedule. 
 
 ### Authors: 
 Ryan Fogle 
