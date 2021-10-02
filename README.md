@@ -9,10 +9,10 @@ Here is a working live demo: https://advisor-app.netlify.app/
 ## Desktop & Mobile: 
 
 ### Home Page
-![]()
+![](https://github.com/RMFogle/advisor/blob/main/client/src/img/Advisor-Homepage.png)
 
 ### Edit a Card
-![]()
+![](https://github.com/RMFogle/advisor/blob/main/client/src/img/edit%20a%20card.png)
 
 ## Motivation: 
 I wanted to build a single page MERN fullstack app that would help me manage my daily work and personal routines. 
