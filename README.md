@@ -1,3 +1,5 @@
+# ![](https://github.com/RMFogle/advisor/blob/main/client/src/img/Advisor-logoblue-25.png)
+
 # advisor app
 advisor app is a personal time management application.
 
@@ -30,7 +32,7 @@ I'm juggling a part time job and multiple freelance gigs while pursuing a career
 - Netlify for frontend deployment.
 
 ## Features: 
-- Timer Clock / Used as a pomodoro clock 
+- Timer Clock / Used as a pomodoro timer
 - Task List 
 - Routine Cards 
 
