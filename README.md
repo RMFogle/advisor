@@ -17,7 +17,6 @@ I wanted to build a single page MERN fullstack app that would help me manage my 
 I'm juggling a part time job and multiple freelance gigs while pursuing a career in software development. I needed a simple app that helps me stay on task and manage my time. 
 
 ## Built with: 
-- React.js 
 - React Redux
 - Axios
 - Express 
