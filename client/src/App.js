@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from '@material-ui/core';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Home from './components/Home/Home';
 import MainNavbar from './components/Navbars/MainNavbar';
@@ -15,8 +15,7 @@ const App = () => {
             <MainNavbar />
             <SubNavbar />
             <Switch>
-            <Route path="/" exact component={() => <Redirect to="/home" />} />
-            <Route path="/home" exact component={Home} />
+            <Route path="/" exact component={Home} />
             </Switch>
         </Container>
         </BrowserRouter>
